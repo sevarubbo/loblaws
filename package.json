@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "install": "bower install; ./node_modules/.bin/webpack --config webpack.config.js"
+    "install": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -14,9 +14,8 @@
   "bugs": {
     "url": "https://github.com/sevarubbo/loblaws/issues"
   },
-  "homepage": "https://github.com/sevarubbo/loblaws",
+  "homepage": "https://sevarubbo.github.io/loblaws",
   "devDependencies": {
-    "file-loader": "^0.10.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {
