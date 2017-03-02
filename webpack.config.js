@@ -1,6 +1,7 @@
 const
     path = require("path"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    UglifyJsPlugin = require("webpack-uglify-js-plugin"),
     extractSCSS = new ExtractTextPlugin("styles.css");
 
 module.exports = {
@@ -20,6 +21,13 @@ module.exports = {
     module: {
         loaders: [
             {
+            test: /\.js$/,
+                loader: "babel-loader",
+                query: {
+                  presets: ["es2015"]
+                }
+            },
+            {
                 test: /\.hbs$/,
                 loader: "./webpack-loaders/ember-template-loader"
             },
@@ -30,13 +38,16 @@ module.exports = {
             {
                 test: /app\/styles\.scss$/,
                 use: ExtractTextPlugin.extract({
-                    use: "css-loader!sass-loader!./webpack-loaders/inject-styles-loader"
+                    use: "css-loader?minimize!sass-loader!./webpack-loaders/inject-styles-loader"
                 })
             }
         ]
     },
     plugins: [
-        extractSCSS
+        extractSCSS,
+        new UglifyJsPlugin({
+            cacheFolder: path.resolve(__dirname, "dist"),
+        })
     ],
     watch: true
 };

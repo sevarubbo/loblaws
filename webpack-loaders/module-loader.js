@@ -88,6 +88,11 @@ module.exports = function (content) {
         }),
         imports = modulePaths.map(filePath => {
             const propertyName = new EmberModule(filePath.replace("./", "")).getClassName();
+
+            if (!propertyName) {
+                return "";
+            }
+
             return `
                 import ${propertyName} from "${filePath}";
                 App.${propertyName} = ${propertyName}

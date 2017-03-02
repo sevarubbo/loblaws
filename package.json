@@ -16,11 +16,15 @@
   },
   "homepage": "https://sevarubbo.github.io/loblaws",
   "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
     "css-loader": "^0.26.2",
     "extract-text-webpack-plugin": "^2.0.0",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.2",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-uglify-js-plugin": "^1.1.9"
   },
   "dependencies": {
     "components-ember": "https://github.com/components/ember/tarball/2.11.2",

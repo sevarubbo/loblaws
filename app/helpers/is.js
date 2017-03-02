@@ -2,6 +2,6 @@
  *
  */
 
-export default Em.Helper.helper(([x, y]) => {
-    return x === y;
+export default Em.Helper.helper(params => {
+    return params[0] === params[1];
 });
