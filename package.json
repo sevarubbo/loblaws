@@ -16,6 +16,10 @@
   },
   "homepage": "https://sevarubbo.github.io/loblaws",
   "devDependencies": {
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
     "webpack": "^2.2.1"
   },
   "dependencies": {

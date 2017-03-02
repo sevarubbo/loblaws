@@ -1,4 +1,10 @@
-const path = require("path");
+const
+    path = require("path"),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    extractSCSS = new ExtractTextPlugin({
+        filename: "styles.css"
+
+    });
 
 module.exports = {
     entry: "./app/index.js",
@@ -10,6 +16,9 @@ module.exports = {
         jquery: "jQuery",
         ember: "Ember"
     },
+    resolve: {
+        modules: [path.resolve(__dirname, "app"), "node_modules"],
+    },
     module: {
         loaders: [
             {
@@ -17,9 +26,18 @@ module.exports = {
                 loader: "./webpack-loaders/ember-template-loader"
             },
             {
-                test: /app\/index\.js/,
-                loader: './webpack-loaders/inject-templates-loader!./webpack-loaders/module-loader'
+                test: /app\/index\.js$/,
+                loader: "./webpack-loaders/inject-templates-loader!./webpack-loaders/module-loader"
+            },
+            {
+                test: /app\/styles\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: "css-loader!sass-loader!./webpack-loaders/inject-styles-loader"
+                })
             }
         ]
-    }
+    },
+    plugins: [
+        extractSCSS
+    ]
 };
