@@ -22,6 +22,9 @@ class EmberModule {
 
         this.isModel = rootDir === "models";
         this.isController = postfix === "controller";
+        this.isAdapter = rootDir === "adapters";
+        this.isSerializer = rootDir === "serializers";
+        this.isHelper = rootDir === "helpers";
         this.isRoute = postfix === "route";
         this.isComponent = folder === filename;
 
@@ -40,6 +43,12 @@ class EmberModule {
             return s.classify(this.filename);
         } else if (this.isComponent) {
             return s.classify(this.filename + "-component");
+        } else if (this.isAdapter) {
+            return s.classify(this.filename + "-adapter");
+        } else if (this.isSerializer) {
+            return s.classify(this.filename + "-serializer");
+        } else if (this.isHelper) {
+            return s.classify(this.filename + "-helper");
         } else if (this.isController) {
 
             const name = this.filePath

@@ -1,5 +1,20 @@
-$colored: blue;
-
-a {
-    color: yellow;
+body {
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
 }
+
+@mixin mobile() {
+    @media (max-width: 500px)
+        {@content;}
+}
+
+@mixin desktop() {
+    @media (min-width: 501px)
+        {@content;}
+}
+
+$box-shadow-main: 0 0 2px rgba(0, 0, 0, .2);
+
+$color-main: #fa4616;

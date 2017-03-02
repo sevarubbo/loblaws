@@ -1,1 +1,25 @@
-{{a}}
+{{product-list-controls
+    sortParameter=(mut sortParameter)
+}}
+
+<div class="{{b}}__list">
+    {{#each productsToDisplay as |product|}}
+        {{product-list-item
+            class=(concat b "__list__item")
+            tagName="article"
+            product=product
+        }}
+    {{/each}}
+
+    <div class="{{b}}__list__item m-type_dummy"></div>
+    <div class="{{b}}__list__item m-type_dummy"></div>
+    <div class="{{b}}__list__item m-type_dummy"></div>
+    <div class="{{b}}__list__item m-type_dummy"></div>
+
+</div>
+
+{{#if shouldHaveMoreProducts}}
+    <button {{action "getMore" }} class="{{b}}__get-more-button">I want more!</button>
+{{else}}
+    <div class="{{b}}__no-more-products">That's all for now</div>
+{{/if}}

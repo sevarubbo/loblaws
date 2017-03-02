@@ -1,3 +1,7 @@
+/**
+ *
+ */
+
 export default Em.Component.extend({
 
     classNameBindings: ["b"],

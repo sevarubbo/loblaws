@@ -23,7 +23,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "components-ember": "https://github.com/components/ember/tarball/2.10.2",
+    "components-ember": "https://github.com/components/ember/tarball/2.11.2",
     "ember-cli-htmlbars": "^1.1.1",
     "recursive-readdir-sync": "^1.0.6"
   }

@@ -1,10 +1,7 @@
 const
     path = require("path"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    extractSCSS = new ExtractTextPlugin({
-        filename: "styles.css"
-
-    });
+    extractSCSS = new ExtractTextPlugin("styles.css");
 
 module.exports = {
     entry: "./app/index.js",
@@ -13,8 +10,9 @@ module.exports = {
         filename: "bundle.js"
     },
     externals: {
-        jquery: "jQuery",
-        ember: "Ember"
+        "jquery": "jQuery",
+        "ember": "Ember",
+        "ember-data": "DS"
     },
     resolve: {
         modules: [path.resolve(__dirname, "app"), "node_modules"],
@@ -39,5 +37,6 @@ module.exports = {
     },
     plugins: [
         extractSCSS
-    ]
+    ],
+    watch: true
 };
