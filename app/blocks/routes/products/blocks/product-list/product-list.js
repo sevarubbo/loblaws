@@ -106,6 +106,7 @@ export default BaseComponent.extend({
      */
     onSortParameterChange: function () {
         this.set("limit", initialLimit);
+        Em.$("html, body").animate({scrollTop: 0}, 300);
     }.observes("sortParameter"),
 
 
