@@ -1,0 +1,47 @@
+.b-product-list-controls {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    box-shadow: $box-shadow-main;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+
+    &__content {
+        display: flex;
+        flex-grow: 1;
+        max-width: 500px;
+        border-right: 1px solid #eee;
+        border-left: 1px solid #eee;
+        box-sizing: border-box;
+    }
+
+    &__sort-option {
+        flex: 1 1 0px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 16px;
+        outline: none;
+        margin: 0;
+
+        @include mobile() {
+            font-size: 14px;
+        }
+
+        &:hover {
+            background: #f3f3f3;
+        }
+
+        &:not(:last-child) {
+            border-right: 1px solid #eee;
+        }
+
+        &.m-state_active {
+            background: #fa4616;
+            color: #fff;
+        }
+    }
+}

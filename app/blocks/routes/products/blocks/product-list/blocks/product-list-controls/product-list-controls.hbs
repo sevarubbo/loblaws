@@ -1,0 +1,21 @@
+<div class="{{b}}__content">
+
+    <button {{action "setSort" "default"}}
+        class="{{b}}__sort-option {{if (is sortParameter "default") "m-state_active"}}"
+    >
+        Popular
+    </button>
+
+    <button {{action "setSort" "name"}}
+        class="{{b}}__sort-option {{if (is sortParameter "name") "m-state_active"}}"
+    >
+        Sort by name
+    </button>
+
+    <button {{action "setSort" "price"}}
+        class="{{b}}__sort-option {{if (is sortParameter "price") "m-state_active"}}"
+    >
+        Sort by price
+    </button>
+
+</div>
