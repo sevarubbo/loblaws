@@ -14,6 +14,56 @@ class EmberModule {
      */
     constructor (filePath) {
 
+        const
+            filename = filePath.split("/").slice(-1)[0].replace(".js", ""),
+            postfix = filename.split("-").slice(-1)[0],
+            rootDir = filePath.split("/")[0],
+            folder = filePath.split("/").slice(-2)[0];
+
+        this.isModel = rootDir === "models";
+        this.isController = postfix === "controller";
+        this.isRoute = postfix === "route";
+        this.isComponent = folder === filename;
+
+        this.filePath = filePath;
+        this.filename = filename;
+
+    }
+
+
+    /**
+     * @return {String}
+     */
+    getClassName () {
+
+        if (this.isModel) {
+            return s.classify(this.filename);
+        } else if (this.isComponent) {
+            return s.classify(this.filename + "-component");
+        } else if (this.isController) {
+
+            const name = this.filePath
+                .replace(/^blocks\/routes\//, "")
+                .replace(/\/pages/g, "")
+                .split("/")
+                .slice(0, -1)
+                .join("-");
+
+            return s.classify(name + "-controller");
+
+        } else if (this.isRoute) {
+
+            const name = this.filePath
+                .replace(/^blocks\/routes\//, "")
+                .replace(/\/pages/g, "")
+                .split("/")
+                .slice(0, -1)
+                .join("-");
+
+            return s.classify(name + "-route");
+
+        }
+
     }
 
 }
@@ -22,18 +72,20 @@ module.exports = function (content) {
 
     const
         appDir = "app",
-        modulePaths = recursive(appDir).filter(filePath => /\.js$/.test(filePath)).map(filePath => {
+        modulePaths = recursive(appDir).filter(filePath => {
+            return /\.js$/.test(filePath) && filePath.split("/").length > 2;
+        }).map(filePath => {
             return filePath.replace(appDir, ".");
         }),
         imports = modulePaths.map(filePath => {
-            return `import "${filePath}";`;
-        }),
-        lookups = modulePaths.map(filePath => {
-            console.log(111, filePath);
+            const propertyName = new EmberModule(filePath.replace("./", "")).getClassName();
+            return `
+                import ${propertyName} from "${filePath}";
+                App.${propertyName} = ${propertyName}
+            `;
         });
 
-    content += "\n\n" + imports.join("\n");
-
+    content += imports.join("");
 
     return content;
 
