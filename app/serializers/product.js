@@ -18,14 +18,13 @@ export default DS.JSONAPISerializer.extend({
                         "badge": result["productBadgeString"],
                         "availableColors": result["availableColors"],
                         "price": result["productPrice"],
-                        "style": result["WS7D315658"],
+                        "style": result["productStyle"],
                         "swatchImage": result["swatchImage"],
                         "thumbnails": result["thumbnails"]
                     }
-                }
+                };
             })
         };
-
 
     }
 
